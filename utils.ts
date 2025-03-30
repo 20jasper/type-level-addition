@@ -23,7 +23,7 @@ type PopExample = Pop<[1, 2, 3, 4]>;
 type PopExampleEmpty = Pop<[]>;
 //   ^?
 
-export type MapNums<T extends [...string[]]> = {
+export type MapNums<T extends string[]> = {
   [K in keyof T]: ToNumber<T[K]>;
 };
 type MapNumsExample = MapNums<["1", "2", "3"]>;
@@ -46,7 +46,7 @@ export type Join<T extends number[]> = T extends [
 type JoinExample = Join<[1, 2, 3, 4]>;
 //   ^?
 
-export type And<T, U> = T extends true
+export type And<T extends boolean, U extends boolean> = T extends true
   ? U extends true
     ? true
     : false
