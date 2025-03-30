@@ -77,9 +77,9 @@ namespace Digits {
   export type AddDigits<M extends number, N extends number> = [
     ...TupleLengthN<M>,
     ...TupleLengthN<N>
-  ]["length"];
-
-  type example = AddDigits<999, 990>;
+  ]["length"] &
+    number;
+  type AddDigitsExample = AddDigits<999, 990>;
   //     ^?
 
   export type GetCarry<T extends number> =
@@ -114,9 +114,8 @@ type Adder<
   Carry extends 0 | 1 = 0,
   Sum extends number = Digits.AddDigits<
     Carry,
-    Digits.AddDigits<Utils.Last<Num1>, Utils.Last<Num2>> & number
-  > &
-    number
+    Digits.AddDigits<Utils.Last<Num1>, Utils.Last<Num2>>
+  >
 > = End<Num1, Num2, Carry> extends true
   ? []
   : [
